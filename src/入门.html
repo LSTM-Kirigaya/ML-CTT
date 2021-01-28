@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ML入门</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/autumnus.css">
+    <link rel="stylesheet" href="../css/font.css">
+
+  </head>
+  <body style="font-family: jetbrain;">
+    <textarea id="source">
+
+class: center, middle
+# 机器学习——从入土到入门
+
+---
+
+## What is AI？ 
+
+人工智能、机器学习和深度学习的概念在近些年十分火热，但很多从业者也难以说清它们之间的关系，外行人更是雾里看花。学习深度学习，需要先从三个概念的正本清源开始。
+
+三者覆盖的技术范畴是逐层递减的，人工智能是最宽泛的概念，机器学习则是实现人工智能的一种方式，也是目前较有效的方式。深度学习是机器学习算法中最热的一个分支，在近些年取得了显著的进展，并代替了多数传统机器学习算法。所以，三者的关系可用下图表示，人工智能 > 机器学习 > 深度学习。
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://ai-studio-static-online.cdn.bcebos.com/94cb6579087a44fbbb7a1b48acee416429c247009e6440c2816e32267b283910" width = "50%" alt=""/>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      图1：人工智能、机器学习和深度学习三者之间的概念范围
+  	</div>
+</center>
+
+
+
+---
+
+## What is ML？ ML=SL+UL+RL
+
+而我们经常听到的机器学习，则能更加明确地被三个分支瓜分——监督学习(Supervised Learning)、非监督学习(Unsupervised Learning)与强化学习(Reinforce Learning):
+
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://pic1.zhimg.com/80/v2-3e0f905e446dd8c7173b337e2d22b7ec_720w.jpg" width = "50%" alt=""/>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      图2：监督学习、无监督学习和强化学习三者之间的概念范围
+  	</div>
+</center>
+
+
+---
+
+## 学习ML的技术栈
+
+我们当然可以以这样的分类为脉络来给初学者呈现我所想，但是奈何ML涉及到的知识点比较多。想要完整地从传统ML算法学到时下热门的深度算法，我个人认为需要的知识分为两大块：
+
+--
+
+数学基础：
+
+- 高等数学（多元微积分）
+- 线性代数（对空间变换的理解，`tensor`是我们ML中的基本研究对象）
+- 概率论（期望、采样、无偏估计的概念）
+- 最优化方法（优化器的理论基础）
+
+--
+
+编程基础：
+
+- 熟练掌握至少一门通用性编程语言，最好是`Python`
+- 面向对象的思想（不会有人还想着函数式编程来）
+- 数据结构（许多机器学习算法的呈现方式与数据结构传递的思想息息相关，比如决策树，比如深度学习框架的核心——计算图）
+- 数据整理与清洗的能力（70%的数据整理与30%的模型编写）
+
+---
+
+## 其实，又没有这么多。。。
+
+当然，刚刚的是ML整体的技术栈，如果你不是专门学习ML的，知识想借助ML的技术来完成某项产品，那么你没有必要完全把这些全部学完。事实上，许多人也已经开发了针对数学系和计算机系的课程或者学习路径。因为在使用的过程中，对于初学者来说，没有必要重复造轮子，能够完成一件看得到的作品才是最重要的。
+
+--
+
+就好像初学编程语言的大部分人以后都不会去和编译器打交道一样。专业不一样，即便目标一样，需要的技术栈也是大不相同的。
+
+> 希望各位学习ML的过程中始终怀着一颗谦卑的心。专门学AI的同学不要因为在圈内就有一种优越感；没有深入了解ML理论，只是搞应用的同学也不要轻视理论，请对理论满怀敬畏之心。
+
+--
+
+网上推荐资料的博客大佬也很多，不过有相当一部分都在扯皮，毕竟不是每个人都像cjc一样聪明。特别是那种一开始就推荐你去啃西瓜书的，很不明智。
+
+---
+
+## self-learning is your best teacher
+
+--
+
+我不可能在一节课中把基本的算法讲完，讲完你们也不一定能听懂，听懂也不一样定能把代码打出来。因此，teach yourself就显得很重要。对于初学者，比较推荐视频学习和项目驱动型学习。
+
+--
+
+- 吴恩达的视频或者李弘毅的视频（B站上都有）。
+- 项目驱动型学习推荐百度大脑的AI Studio计算平台上的免费课程。
+
+> 无论是哪种，你都需要熟练使用Python及其矩阵库`numpy`与可视化库`matplotlib`。如果可以的话，去学一种深度学习框架，建议初学者学习`PyTorch`。
+
+--
+
+等到你觉得差不多了，可以去尝试啃西瓜书了，推荐网上开源的南瓜书，这是一本对西瓜书的解读，对初学者还是比较友好的。
+
+---
+
+## 你需要一个正确的认识
+
+如果你领略过DL的神奇，回过头来看传统的机器学习算法，会有这样的感觉：
+
+--
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://file.keoaeic.org/uploads/ueditor/image/20201015/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A01.jpg
+" width = "60%" alt=""/>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      先学DL的你
+  	</div>
+</center>
+
+---
+
+或许这不是那么恰当。因为你会养成这样一个坏习惯：
+
+--
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://file.keoaeic.org/uploads/ueditor/image/20201015/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A03.jpg
+" width = "60%" alt=""/>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      先学DL的你
+  	</div>
+</center>
+
+
+---
+
+## 左右权衡，讲讲这个
+
+由于监督学习的理论占比或者实际应用占了半壁江山，因此我们会从一个小例子出发，来实现一个单层感知机，用来预测房价。
+
+--
+
+先讲讲监督学习的基本思想。
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3691797885,867892543&fm=26&gp=0.jpg" width = "60%" alt=""/>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      机器学习
+  	</div>
+</center>
+
+
+---
+
+
+人类解决一个问题往往会根据先验知识。比如打一把CS，如果你没有打过，那么第一局你就有可能被电脑虐翻。但随着你游戏次数打得越多，你学会了更好地压枪，更好地偷袭。
+
+--
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://i.loli.net/2020/12/31/Ku4iXqeltnJHNG9.png" width = "60%" alt=""/>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      图3：从CS出发
+  	</div>
+</center>
+
+--
+
+我们可以把上述地过程抽象成一个简单的IPO：
+
+输入：一个会开机关机的人。
+
+处理：若干场次的CS的经验。
+
+输出：一个CS高手。
+
+---
+
+事实上，我们还可以把处理中的“CS的经验”进一步抽象，若干把比赛可以抽象成一条条数据。如果我们想要把一场比赛用一条数据来表征，我们可以简单点，只研究一场比赛的进攻策略，那么什么会影响一场比赛的进攻策略，我们可以畅想一下，或许是开局的金钱数？或许是这局的阵营？这些都可以放入一个数据中，我们将这些我们希望表征一局游戏进攻策略影响因子称为一条数据的**特征(feature)**。
+
+--
+
+无论是瞎打的，还是被虐了，一般来说，一局打完后，玩家总会马后炮：“要是我杀中路就好了=_=”。这其实反应了玩家在一局后知道了这局最优解，或者说玩家应该根据金钱数和阵营采取的策略。我们一般把这个我们希望根据数据的几个特征知道的值成为数据的**标签(label)**，有时也称为**真值(ground truth)**。
+
+--
+
+由此，我们得到监督学习中的数据组成：特征+标签。事实上我们可以将一条数据的若干个特征拼成一个行向量。那么n个行向量组成的矩阵就可以表示我们的数据集了，我们一般将拼成的数据集记为X,标签记为Y。
+
+---
+
+而无监督学习的目的就是通过训练来拟合一个函数，一个从特征向量到标签的映射。怎么拟合呢？用数据集，当然，我们用来训练的数据集不一定是真实数据的无偏采样，可能走A点的数据更多，走B点的数据比较少。因此，在使用训练集训练完模型后，很有必要测试一下我们的模型，看一下它的泛化性如何，当然这些都是后话了（东西太多）
+
+--
+
+你或许还是不是很清楚应该怎么建立模型，如果你学过概率论的含参估计，应该很快会想到，我们之前的论述完全就是在重复含参估计的内容：
+
+--
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://i.loli.net/2020/12/31/EkUatTBgFhqcGyJ.png" width = "20%" alt=""/>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      map
+  	</div>
+</center>
+
+---
+
+## 线性模型
+
+那么这个含参映射应该怎么找呢？事实上，我们总会从最简单的模型研究起，而最简单的，而且或许存在泛化性能的映射是什么呢？
+
+--
+
+当然是线性模型呀。
+
+所以我们不妨把之前的映射假设为线性模型：
+
+--
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://i.loli.net/2020/12/31/xq5gAQlSNysLD4k.png" width = "20%" alt=""/>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      function
+  	</div>
+</center>
+
+---
+
+那么这样的一个线性模型就是我们从特征到标签的桥梁了。当然，其中的参数θ一开始时随机选择的，所以我们的模型在刚刚开始的时候肯定是瞎选择。就好像刚刚打CS的新手只会瞎买枪一样。
+
+--
+
+由于对于每一场比赛，作为旁观者，你会知道这局最好的策略是什么，也就是这场比赛代表的数据的标签是什么。那么你就会希望模型得到的结果尽可能往标签值上去靠，毕竟标签是我们希望模型预测出来的值。
+
+--
+
+这个过程你也可以理解为线性模型得出的值要尽可能去拟合标签值所代表的点。那么这样一个问题就被我转换成了含参线性函数的拟合问题，一个比较容易想到的方法就是最小二乘法。
+
+--
+
+你也可以这么理解：我们希望我们模型得到的值去靠近标签值，那么我们要做的事就是**最小化预测值与标签值之间的差异**。当我们预测出的值与标签值没有差异时，那么不就说明我们的模型很不错了吗？
+
+---
+
+## 度量(metrics)
+
+想要最小化差异，你首先得知道如何度量差异。**度量(metric)**这个概念在机器学习中相当重要，也是研究热点。一般来说，比如在深度学习中，度量方式的创新和神经网络的前馈逻辑的创新一样重要。DL界一篇优秀的paper都需要论述自己的metric创新在哪里？随着图神经网络的兴起，有一部分的度量方式开始向着“线性空间->非线性空间->线性空间”的思路开始发展。
+
+--
+
+不过对于初学者来说，这些都是后话，我们首先得先确定一个相对简单可行的度量方式，来度量我们模型的预测值与标签值之间的差异。我们一般会选择欧式度量，也就是L2范数作为初学者应该掌握的。原因有两点：
+
+--
+
+- 可导
+- 低维空间有比较好的几何解释
+
+---
+
+## 优化函数
+
+这样我们就建立了这样一个“差异函数”，不过我们一般将这个度量预测值与标签值得到的表达式称为损失函数。
+
+--
+
+很显然，在数据集给定的情况下，损失函数描述了待定的函数参数到差异值的一个映射。
+
+--
+
+下面要做的，就是去优化这个函数，所谓优化，也就是求取这个函数在定义域内的最小值点θ*。
+
+---
+
+你可能会问，这个函数不是有闭式解吗？那直接求取最小值点的解析解不就结束了吗？但是事实上，我们目前得到的这个线性模型只是最简单的模型，对于更加复杂的多层感知机，甚至深度神经网络来说，它们的前馈逻辑比线性模型复杂地多，即便是凸优化，你也求不出它们的解析解。我们在简单的线性模型就研究一般化的优化思路是为了这样的方法也能够泛化到更加复杂的损失函数的优化。
+
+--
+
+那么怎么“一般地”来优化我们的函数呢？这就是最优化方法这门课教的内容，关于最优化方法的内容，此处不再展开，感兴趣的同学可以访问我们的知乎主页，我将常用的经典优化算法整理成了几份笔记。
+
+--
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://i.loli.net/2020/12/31/ejxJSCiktrN8cAI.png" width = "50%" alt=""/>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      https://zhuanlan.zhihu.com/p/271088190
+  	</div>
+</center>
+
+---
+
+## 口胡环节
+
+此处我们就讲讲最简单的梯度下降法（后面开始口胡）
+
+一维->二维->高维
+
+<center>
+  <img style="border-radius: 0.3125em;
+  box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+  src="https://file.keoaeic.org/uploads/ueditor/image/20201015/%E8%A1%A8%E6%83%85%E5%8C%851.jpg" width = "70%" alt=""/>
+  <br>
+  <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+  display: inline-block;
+  color: #999;
+  padding: 2px;">
+    开始口胡
+  </div>
+</center>
+
+---
+
+## 代码环节
+
+下面开始写代码，首先我们需要整理数据，但是对于初学者来说，这回大大增加学习成本，所以，我直接把数据整理好了，并且把加载数据的代码贴上来了：
+
+--
+
+```python
+def DataLoader(path):
+    X, Y = [], []
+    for line in open(path, "r", encoding="utf-8"):  # 一行一行读数据
+        data = list(map(float, line.strip().split(",")))
+        X.append(data[:-1])
+        Y.append(data[-1])
+    
+    X = np.array(X) # 转化成ndarray对象
+    Y = np.array(Y)
+
+    X = (X - np.min(X, axis=0)) / (np.max(X, axis=0) - np.min(X, axis=0))   # 数据归一化
+
+    return X, Y
+```
+
+
+---
+
+## 基本结构
+
+为了代码的复用性，我们将将我们的线性模型的各项操作及其本身包装在一个`class`中，它的成员函数很具有代表性，我们可以看看：
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://i.loli.net/2020/12/31/jptmsBSywdaFGJ8.png" width = "80%" alt=""/>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      图4：LinearRegression类基本结构
+  	</div>
+</center>
+
+
+---
+
+## `LinearRegression`的完整代码：
+
+```python
+class LinearRegression(object):
+    def __init__(self, feature_num):   # 特征维度
+        np.random.seed(123)    
+        self.w = np.random.randn(feature_num, 1)    # 正态分布初始化权重向量
+        self.b = 0
+    
+    def forward(self, X):
+        return np.dot(X, self.w) + self.b
+    
+    def loss(self, Z, Y):
+        return np.mean((Z - Y) ** 2)
+    
+    def gradient(self, X, Y):
+        Z = self.forward(X)                 # 前向运算得到预测值
+        w_g = np.mean((Z - Y) * X, axis=0)  # 广播运算+求平均值得到梯度
+        w_g = w_g.reshape([-1, 1])          # 梯度要写成列向量
+        b_g = np.mean(Z - Y)
+        return w_g, b_g
+    
+    def update(self, w_g, b_g, alpha=0.01):
+        self.w -= alpha * w_g
+        self.b -= alpha * b_g
+```
+
+---
+
+```python
+    
+    def train(self, X, Y, n_iter, alpha=0.01):  # 训练逻辑
+        for i in range(n_iter):
+            Z = self.forward(X)             # 前向计算
+            loss = self.loss(Z, Y)          # 计算损失
+            w_g, b_g = self.gradient(X, Y)  # 计算梯度
+            self.update(w_g, b_g)           # 更新网络参数
+
+            if (i + 1) % 100 == 0:
+                print("iter {}, loss {}".format(i, loss))
+```
+
+> train函数的步骤很重要，事实上，随着训练中各组件的专业化，真正的训练步骤应该为：前向计算->计算损失->梯度清空->更新网络，你会发现，和我们所做几乎一致
+
+---
+
+## 实例化+训练
+
+```python
+# 获取数据
+X, Y = DataLoader("../data/boston.txt") 
+print(X.shape, Y.shape)
+Y = Y.reshape([-1, 1])
+
+# 切分数据
+ratio = 0.8     
+offline = int(ratio * X.shape[0])
+train_X = X[:offline]
+train_Y = Y[:offline]
+test_X = X[offline:]
+test_Y = Y[offline:]
+
+# 模型实例化+训练
+model = LinearRegression(n_feature=13)
+model.train(X=train_X, Y=train_Y, alpha=0.01, n_iter=1000)
+```
+
+out:
+
+```
+(506, 13) (506,)
+epoch:0, loss:724.8615751268659
+epoch:100, loss:90.26694609983495
+epoch:200, loss:75.3317695039952
+...
+```
+
+---
+
+## 测试集上的预测结果
+
+我们预测一下测试集上的数据，并可视化一下它与标签值之间的差异：
+
+```python
+predict = model.forward(test_X)
+
+plt.plot(predict, label="predict")
+plt.plot(test_Y, label="test_Y")
+plt.grid(True)
+plt.legend()
+plt.show()
+```
+
+out:
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://i.loli.net/2020/12/31/heZ9fHKm8pMCEny.png" width = "60%" alt=""/>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      图5：测试集上的结果
+  	</div>
+</center>
+
+    </textarea>
+    <script src="./remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
